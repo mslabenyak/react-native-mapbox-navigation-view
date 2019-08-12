@@ -1,4 +1,3 @@
-
 package com.reactlibrary;
 
 import java.util.Arrays;
@@ -14,7 +13,7 @@ import com.facebook.react.bridge.JavaScriptModule;
 public class RNMapboxNavigationViewPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Collections.emptyList();
+      return Arrays.<NativeModule>asList(new MapboxModule(reactContext));
     }
 
     // Deprecated from RN 0.47
