@@ -1,3 +1,5 @@
+package com.reactlibrary;
+
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.SimpleViewManager;
 
