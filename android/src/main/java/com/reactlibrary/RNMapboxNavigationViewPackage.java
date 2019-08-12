@@ -13,7 +13,7 @@ import com.facebook.react.bridge.JavaScriptModule;
 public class RNMapboxNavigationViewPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(new RNMapboxNavigationViewModule(reactContext));
+      return Collections.emptyList();
     }
 
     // Deprecated from RN 0.47
@@ -23,6 +23,6 @@ public class RNMapboxNavigationViewPackage implements ReactPackage {
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-      return Collections.emptyList();
+      return Arrays.<ViewManager>asList(new MapboxNavigationViewManager());
     }
 }
