@@ -7,6 +7,11 @@
 
 ### Mostly automatic installation
 
+#### Add repositories into android/build.gradle
+```
+mavenCentral()
+maven { url 'https://mapbox.bintray.com/mapbox' }
+```
 `$ react-native link react-native-mapbox-navigation-view`
 
 ### Manual installation
@@ -48,6 +53,18 @@
 import RNMapboxNavigationView, { Mapbox } from 'react-native-mapbox-navigation-view';
 
 // TODO: What to do with the module?
-Call Mapbox.setAccessToken(String token) before using the NavigationView.
+componentDidMount() {
+	Mapbox.setAccessToken("pk.eyJ1IjoibWljaGFlbHNsYWJlbnlhayIsImEiOiJjanoxZWhvN3Iwa2t4M2N1b3h2ZHkwNHR1In0.TkL-kezlHSnPdkl0uIQomg")
+}
+
+render() {
+	return (
+		<RNMapboxNavigationView 
+			style={{
+				width: Dimensions.get('window').width, 
+				height: Dimensions.get('window').height
+			}}>
+	);
+}
 ```
   
