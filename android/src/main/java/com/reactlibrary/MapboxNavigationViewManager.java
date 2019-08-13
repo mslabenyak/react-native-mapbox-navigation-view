@@ -8,7 +8,11 @@ import com.mapbox.services.android.navigation.ui.v5.OnNavigationReadyCallback;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 import com.mapbox.services.android.navigation.ui.v5.NavigationViewOptions;
 import com.mapbox.api.directions.v5.models.DirectionsResponse;
+import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
+import com.mapbox.api.matching.v5.MapboxMapMatching;
+import com.mapbox.api.matching.v5.MapMatchingResponse;
+import com.mapbox.services.api.directions.v5.DirectionsCriteria;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -16,11 +20,13 @@ import android.os.Looper;
 import retrofit2.Call;
 import retrofit2.Response;
 
-public class MapboxNavigationViewManager extends SimpleViewManager<NavigationView> implements retrofit2.Callback<DirectionsResponse>, OnNavigationReadyCallback{
+public class MapboxNavigationViewManager extends SimpleViewManager<NavigationView> implements retrofit2.Callback<DirectionsResponse>, 
+  OnNavigationReadyCallback, retrofit2.Callback<MapMatchingResponse>{
 
   public static final String REACT_CLASS = "MapboxNavigationView";
   private NavigationView mNavigationView;
   private ThemedReactContext reactContext;
+  private DirectionsRoute route;
 
   private static final double ORIGIN_LONGITUDE = -3.714873;
   private static final double ORIGIN_LATITUDE = 40.397389;
@@ -74,4 +80,31 @@ public class MapboxNavigationViewManager extends SimpleViewManager<NavigationVie
     return REACT_CLASS;
   }
 
+  @ReactProp(name = "route")
+  public void setRoute(NavigationView view, ReadableArray coordinates) {
+    /*
+    MapboxMapMatching.builder()
+      .accessToken("pk.eyJ1IjoibWljaGFlbHNsYWJlbnlhayIsImEiOiJjanoxZWhvN3Iwa2t4M2N1b3h2ZHkwNHR1In0.TkL-kezlHSnPdkl0uIQomg")
+      .coordinates(coordinates.toArrayList())
+      .steps(true)
+      .voiceInstructions(true)
+      .bannerInstructions(true)
+      .profile(DirectionsCriteria.PROFILE_DRIVING)
+      .build()
+      .enqueueCall(this);
+      */
+  }
+
+  @Override
+  public void onResponse(Call<MapMatchingResponse> call, Response<MapMatchingResponse> response) {
+    if (response.isSuccessful()) {
+      this.route = response.body().matchings().get(0).toDirectionRoute();
+      mNavigationView.startNavigation(this.route);
+    }
+  }
+  
+  @Override
+  public void onFailure(Call<MapMatchingResponse> call, Throwable throwable) {
+  
+  }
 }

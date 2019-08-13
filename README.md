@@ -3,7 +3,7 @@
 
 ## Getting started
 
-`$ npm install react-native-mapbox-navigation-view --save`
+`$ npm install https://github.com/BaseOperations/react-native-mapbox-navigation-view.git`
 
 ### Mostly automatic installation
 
@@ -45,9 +45,9 @@
 
 ## Usage
 ```javascript
-import RNMapboxNavigationView from 'react-native-mapbox-navigation-view';
+import RNMapboxNavigationView, { Mapbox } from 'react-native-mapbox-navigation-view';
 
 // TODO: What to do with the module?
-RNMapboxNavigationView;
+Call Mapbox.setAccessToken(String token) before using the NavigationView.
 ```
   
