@@ -9,8 +9,10 @@
 
 #### Add repositories into android/build.gradle
 ```
-mavenCentral()
-maven { url 'https://mapbox.bintray.com/mapbox' }
+repositories {
+	mavenCentral()
+	maven { url 'https://mapbox.bintray.com/mapbox' }
+}
 ```
 `$ react-native link react-native-mapbox-navigation-view`
 
@@ -38,6 +40,13 @@ maven { url 'https://mapbox.bintray.com/mapbox' }
   	```
       compile project(':react-native-mapbox-navigation-view')
   	```
+4. Add repositories into android/build.gradle
+		```
+		repositories {
+			mavenCentral()
+			maven { url 'https://mapbox.bintray.com/mapbox' }
+		}
+		```
 
 #### Windows
 [Read it! :D](https://github.com/ReactWindows/react-native)
